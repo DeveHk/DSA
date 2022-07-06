@@ -1,0 +1,7 @@
+{
+    "cpp":{
+        "snippets":{
+            "ink": "#include<bit/stdc++.h> using namespace std;"
+        }
+    }
+}
