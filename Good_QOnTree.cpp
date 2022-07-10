@@ -255,7 +255,35 @@ class Solution{
     }
 
     //Q6:
-   
+    int rows=100;
+    vector<int> V[100];
+    int Lmax(Node* root,int& i){
+        if(root==NULL)
+        return i;
+        Lmax(root->left,++i);
+    }
+    int Rmax(Node* root,int& i){
+        if(root==NULL)
+        return i;
+        Rmax(root->right,++i);
+    }
+    void LOL(Node* root, int& i )
+    {
+        if(root==NULL)
+        return;
+        V[i].push_back(root->data);
+        LOL(root->left,--i);
+        LOL(root->right,++i);
+    }
+    vector<int> verticalOrder(Node *root)
+    {
+        int i=0,j=0;
+        int Size=Lmax(root->left,i)+Rmax(root->right,j)+1;
+        LOL(root,i);
+        for(int k=0;k<Size;k++)
+        for(int l=0;l<V[k].size();k++)
+        cout<<" "<<V[k][l]<<"  ";
+    }
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -275,7 +303,7 @@ int main()
 
         Node *root = buildTree(s);
         Solution ob;
-        cout << ob.isBalanced(root) << endl;
+        cout << ob.verticalOrder(root)[0] << endl;
     }
     return 0;
 }
